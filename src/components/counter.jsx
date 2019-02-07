@@ -14,8 +14,8 @@ class Counter extends Component {
     }
   }
 
-  componentWillUnmount(){
-    console.log('Counter-Unmount')
+  componentWillUnmount() {
+    console.log("Counter-Unmount");
   }
 
   render() {
@@ -23,7 +23,9 @@ class Counter extends Component {
     return (
       <div>
         <h4>{this.props.id}</h4>
-        <span className={this.getBadgeClasses()}>{this.formatCount()}</span>
+        <span className={this.getBadgeClasses() + " width200"}>
+          {this.formatCount()}
+        </span>
         <button
           onClick={() => this.props.onIncrement(this.props.counter)}
           className="btn btn-secondary btn-sm"
@@ -48,6 +50,10 @@ class Counter extends Component {
 
   getBadgeClasses() {
     let classes = "badge m-2 badge-";
+    if (this.props.counter.value < 0) {
+      classes += "danger";
+      return classes;
+    }
     classes += this.props.counter.value === 0 ? "warning" : "primary";
     return classes;
   }
