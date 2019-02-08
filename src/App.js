@@ -40,6 +40,17 @@ class App extends Component {
 
     this.setState({ counters });
   };
+  handleAdd = () =>{
+      let maxId = null;
+      const counters = [...this.state.counters];
+      counters.map(obj =>{
+        if (obj.id > maxId) maxId = obj.id;
+      })
+      console.log(maxId);
+      counters.push({id:maxId+1,value:0});
+      this.setState({counters});
+      console.log('hey');
+  }
 
   handleIncrement = counter => {
     const counters = [...this.state.counters];
@@ -67,7 +78,8 @@ class App extends Component {
           totalCounters={this.state.counters.filter(c => c.value > 0).length}
         />
         <main className="container">
-          <Counters
+          <Counters 
+            onAdd={this.handleAdd}
             counters={this.state.counters}
             onReset={this.handleReset}
             onIncrement={this.handleIncrement}

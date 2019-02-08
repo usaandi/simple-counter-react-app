@@ -4,6 +4,7 @@ class Counters extends Component {
   render() {
     console.log("Counters-Rendered");
     const {
+      onAdd,
       onReset,
       counters,
       onDelete,
@@ -15,6 +16,9 @@ class Counters extends Component {
       <div>
         <button onClick={onReset} className="btn btn-primary btn-sm m-2">
           Reset
+        </button>
+        <button onClick={onAdd} className="btn btn-primary btn-sm m-2">
+          Add new
         </button>
         {counters.map(counter => (
           <Counter
